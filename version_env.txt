@@ -1,0 +1,3 @@
+OS	  = macOS 11.2.3 (20D91)
+AWS CLI	  = 2.2.5 Python/3.9.5 Darwin/20.3.0 source/x86_64 prompt/off
+Terraform = v0.15.3
