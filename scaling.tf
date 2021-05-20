@@ -47,3 +47,38 @@ resource "aws_autoscaling_policy" "core_stockbit_policy" {
     target_value = 45.0
   }
 }
+
+# Create a new load balancer
+resource "aws_elb" "core_elb" {
+  provider           = aws.region-master
+  name               = "core-stockbit-elb"
+  subnets             = ["${aws_subnet.private_subnet_zone_b.id}"]
+  internal           = true
+
+  listener {
+    instance_port     = 80
+    instance_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
+  }
+
+  health_check {
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 3
+    target              = "HTTP:80/"
+    interval            = 30
+  }
+
+
+  tags = {
+    Name = "core-stockbit-elb"
+  }
+}
+
+# Create a new load balancer attachment
+resource "aws_autoscaling_attachment" "core_elb_attachment" {
+  provider               = aws.region-master
+  autoscaling_group_name = aws_autoscaling_group.core_stockbit_group.name
+  elb                    = aws_elb.core_elb.id
+}

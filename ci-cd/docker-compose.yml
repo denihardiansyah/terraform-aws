@@ -1,0 +1,17 @@
+Resources:
+  EC2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+        GroupDescription: Allow http to client host 
+        SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0 
+  Ec2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: 123456.dkr.ecr.ap-southeast-1.amazonaws.com/deni-test/docker-ecs-nginx
+      SecurityGroups:
+        - !Ref EC2SecurityGroup

@@ -1,0 +1,3 @@
+Dockerfile-nya perlu simply install Nginx dan memasukkan file dari repo bernama
+"hello.txt" ke dalam folder "/var/www/". Let's assume folder itu adalah folder utama
+yang akan dibaca Nginx sebagai web server
