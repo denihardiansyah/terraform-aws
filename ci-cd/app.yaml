@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stockbit-nginx
+  labels:
+      app: stockbit-nginx
+spec:
+  selector:
+    matchLabels:
+      app: stockbit-nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: stockbit-nginx
+    spec:
+      containers:
+      - name: stockbit-nginx
+        image: stockbit-nginx:0.1
+        ports:
+        - containerPort: 80
