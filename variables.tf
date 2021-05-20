@@ -9,7 +9,6 @@ variable "region-master" {
   default     = "ap-southeast-1"
 }
 
-#Ubuntu 18.04
 variable "image_id" {
   type        = string
   description = "The EC2 image ID to launch"
