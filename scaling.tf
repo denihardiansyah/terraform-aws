@@ -24,7 +24,6 @@ resource "aws_autoscaling_group" "core_stockbit_group" {
   health_check_type         = var.health_check_type
   vpc_zone_identifier       = ["${aws_subnet.private_subnet_zone_b.id}"]
 
-
   launch_template {
     id      = aws_launch_template.core_stockbit_internal_tmp.id
     version = "$Latest"
